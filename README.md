@@ -5,7 +5,7 @@
 1. `.env.example` 裡面的 `[PROJ_ROOT]` 改成你的專案根目錄
 2. 安裝依賴套件：`pip install -r requirements.txt`
 3. 執行 `python chroma_initiator/index_to_chromadb.py` 來建立 ChromaDB 本地向量資料庫
-    * 這部分會需要有 `chroma_initiator/dataset` 需要跟沒有提供在 github 上，需要另外索取
+    * 這部分會需要有 `chroma_initiator/dataset` 沒有提供在 github 上，需要另外索取
 4.  執行 `python main.py --query "你的廣告主題"` 來生成文案並進行詐騙手法分析
 5. 產出: `scam_database.db`，包含 `id: 15位數ID`, `context: 廣告文案`, `scam_type: 詐騙手法`
 
