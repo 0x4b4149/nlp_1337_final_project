@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>🚨 警告：你被騙了！</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="education-body">
+    <div class="warning-container">
+        <div class="warning-icon">⚠️</div>
+        <h1 class="alert-title">你被騙了！</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">剛剛那是一個模擬的釣魚登入頁面。<br>如果您在真實世界中輸入了帳號密碼，您的個人資料已經落入詐騙集團手中！</p>
+        
+        <div class="scam-info">
+            <h3>本次遭遇的詐騙手法：{{ scam_type }}</h3>
+            <p><strong>詐騙文案 / 情境：</strong><br>「{{ context }}」</p>
+        </div>
+        
+        <a href="/scammed_again" class="btn-restart">更多資訊</a>
+    </div>
+</body>
+</html>

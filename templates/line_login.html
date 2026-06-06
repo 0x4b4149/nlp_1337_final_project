@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>LINE 登入</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/line.css') }}">
+</head>
+<body>
+    <div class="line-container">
+        <div class="line-header">
+            <h1 class="line-logo">LINE</h1>
+        </div>
+        <div class="line-content">
+            <h2>登入 LINE</h2>
+            <form action="/education" method="POST">
+                <input type="hidden" name="id" value="{{ ad_id }}">
+                <input type="text" placeholder="電子郵件帳號" required>
+                <input type="password" placeholder="密碼" required>
+                <button type="submit" class="btn-login">登入</button>
+            </form>
+            <div class="links">
+                <a href="#">重設密碼</a> | <a href="#">註冊新帳號</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

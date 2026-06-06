@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>🚨 警告：你又被騙了！</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="education-body">
+    <video autoplay muted loop playsinline style="position: fixed; right: 0; bottom: 0; min-width: 100%; min-height: 100%; width: auto; height: auto; z-index: -100; object-fit: cover; opacity: 0.8;">
+        <source src="{{ url_for('static', filename='boss_bg.mp4') }}" type="video/mp4">
+    </video>
+    <div class="warning-container" style="position: relative; z-index: 1; background: rgba(183, 28, 28, 0.65); max-width: 450px; padding: 25px; backdrop-filter: blur(4px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);">
+        <div class="warning-icon">⚠️</div>
+        <h1 class="alert-title">你又被騙了！</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 20px;">剛剛這也是一個模擬的釣魚按鈕。<br>在網路上隨意點擊不明來源的連結，隨時都有可能落入詐騙集團的陷阱！</p>
+        
+        <div class="scam-info" style="margin-bottom: 30px;">
+            <p><strong>請提高警覺，不要隨意點擊任何聲稱可以提供「更多資訊」或「領取獎勵」的不明連結。</strong></p>
+        </div>
+        
+        <a href="https://165.npa.gov.tw" target="_blank" class="btn-restart">更多資訊 (前往內政部警政署 165 全民防騙網)</a>
+        
+        <div style="margin-top: 20px;">
+            <a href="/mock_scam" style="color: #ccc; text-decoration: underline;">重新開始演練</a>
+        </div>
+    </div>
+</body>
+</html>
