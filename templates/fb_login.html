@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Facebook 登入或註冊</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fb.css') }}">
+</head>
+<body>
+    <div class="fb-container">
+        <div class="fb-left">
+            <h1 class="fb-logo">facebook</h1>
+            <p class="fb-subtitle">Facebook，讓你和親友保持交友互動。</p>
+        </div>
+        <div class="fb-right">
+            <div class="login-box">
+                <form action="/education" method="POST">
+                    <input type="hidden" name="id" value="{{ ad_id }}">
+                    <input type="text" placeholder="電子郵件地址或手機號碼" required>
+                    <input type="password" placeholder="密碼" required>
+                    <button type="submit" class="btn-login">登入</button>
+                    <a href="#" class="forgot-link">忘記密碼？</a>
+                    <hr>
+                    <button type="button" class="btn-create">建立新帳號</button>
+                </form>
+            </div>
+            <p class="page-create"><a href="#">為名人、品牌或企業建立粉絲專頁。</a></p>
+        </div>
+    </div>
+</body>
+</html>

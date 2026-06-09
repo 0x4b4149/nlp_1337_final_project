@@ -2,3 +2,7 @@ dataset
 .env
 .vscode
 __pycache__
+venv/
+*.pyc
+
+.agents

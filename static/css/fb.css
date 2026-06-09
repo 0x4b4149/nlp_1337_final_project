@@ -1,0 +1,38 @@
+body {
+    background-color: #f0f2f5; font-family: Helvetica, Arial, sans-serif;
+    margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh;
+}
+.fb-container {
+    display: flex; align-items: center; justify-content: space-between; max-width: 980px; width: 100%; padding: 20px;
+}
+.fb-left { width: 500px; padding-right: 32px; }
+.fb-logo {
+    color: #1877f2; font-size: 3.5rem; font-weight: bold; margin: 0; letter-spacing: -1px;
+}
+.fb-subtitle { font-size: 1.7rem; line-height: 1.2; font-weight: normal; margin-top: 10px; }
+.fb-right { width: 396px; }
+.login-box {
+    background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    text-align: center;
+}
+.login-box input {
+    width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 1px solid #dddfe2;
+    border-radius: 6px; font-size: 1.1rem; box-sizing: border-box;
+}
+.login-box input:focus { border-color: #1877f2; outline: none; box-shadow: 0 0 0 2px #e7f3ff; }
+.btn-login {
+    width: 100%; background: #1877f2; color: #fff; font-size: 1.2rem; font-weight: bold;
+    padding: 10px 0; border: none; border-radius: 6px; cursor: pointer; margin-top: 6px;
+}
+.btn-login:hover { background: #166fe5; }
+.forgot-link { display: block; margin: 15px 0; color: #1877f2; text-decoration: none; font-size: 0.9rem; }
+.forgot-link:hover { text-decoration: underline; }
+.login-box hr { border: 0; border-top: 1px solid #dadde1; margin: 20px 0; }
+.btn-create {
+    background: #42b72a; color: #fff; font-size: 1.1rem; font-weight: bold;
+    padding: 10px 16px; border: none; border-radius: 6px; cursor: pointer;
+}
+.btn-create:hover { background: #36a420; }
+.page-create { text-align: center; font-size: 0.9rem; margin-top: 28px; }
+.page-create a { text-decoration: none; font-weight: bold; color: #1c1e21; }
+.page-create a:hover { text-decoration: underline; }

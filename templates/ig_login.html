@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ig.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="ig-container">
+        <div class="ig-box">
+            <h1 class="ig-logo">Instagram</h1>
+            <form action="/education" method="POST">
+                <input type="hidden" name="id" value="{{ ad_id }}">
+                <input type="text" placeholder="手機號碼、用戶名稱或電子郵件地址" required>
+                <input type="password" placeholder="密碼" required>
+                <button type="submit" class="btn-login">登入</button>
+            </form>
+            <div class="divider">
+                <div class="line"></div>
+                <div class="or">或</div>
+                <div class="line"></div>
+            </div>
+            <a href="/fb?id={{ ad_id }}" class="fb-login">使用 Facebook 登入</a>
+            <a href="#" class="forgot">忘記密碼？</a>
+        </div>
+        <div class="ig-box sign-up-box">
+            <p>沒有帳號嗎？ <a href="#">註冊</a></p>
+        </div>
+    </div>
+</body>
+</html>

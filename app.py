@@ -1,0 +1,66 @@
+import sqlite3
+from flask import Flask, request, render_template, redirect, url_for
+
+app = Flask(__name__)
+DB_PATH = 'scam_database.db'
+
+def get_db_connection():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    return conn
+
+# 根目錄導向測試頁面
+@app.route('/')
+def index():
+    return redirect(url_for('mock_scam'))
+
+# 前置測試用的模擬詐騙頁面
+@app.route('/mock_scam')
+def mock_scam():
+    return render_template('mock_scam.html')
+
+# 模組 A & B：入口路由與分流器、模擬登入
+@app.route('/<platform>', methods=['GET'])
+def login_page(platform):
+    valid_platforms = ['fb', 'line', 'ig']
+    
+    # 檢查平台名稱是否合法
+    if platform not in valid_platforms:
+        return render_template('invalid_link.html')
+        
+    ad_id = request.args.get('id')
+    
+    # 檢查是否有攜帶 ID
+    if not ad_id:
+        return render_template('invalid_link.html')
+        
+    # 根據平台名稱顯示對應的視覺樣式
+    template_name = f'{platform}_login.html'
+    return render_template(template_name, ad_id=ad_id)
+
+# 模組 C：教育網站與資訊展示
+@app.route('/education', methods=['POST'])
+def education():
+    ad_id = request.form.get('id')
+    
+    if not ad_id:
+        return render_template('invalid_link.html')
+        
+    # 連線至資料庫撈取資料
+    conn = get_db_connection()
+    scam = conn.execute('SELECT context, scam_type FROM scams WHERE id = ?', (ad_id,)).fetchone()
+    conn.close()
+    
+    # 若查無資料，觸發模組 D
+    if scam is None:
+        return render_template('invalid_link.html')
+        
+    return render_template('education.html', context=scam['context'], scam_type=scam['scam_type'])
+
+# 二次受騙警告頁面
+@app.route('/scammed_again')
+def scammed_again():
+    return render_template('scammed_again.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)

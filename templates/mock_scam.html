@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <title>測試用模擬詐騙網站</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="mock-body">
+    <div class="mock-container">
+        <h1>⚠️ 測試用模擬詐騙網站</h1>
+        <p>這是一個外部誘發點，點擊下方連結將會帶您進入高擬真的假登入頁面。</p>
+
+        <div class="test-links">
+            <a href="/fb?id=166967284561505" class="btn btn-fb">測試 FB 登入 (假投資)</a>
+            <a href="/line?id=901621327747886" class="btn btn-line">測試 Line 登入 (釣魚簡訊)</a>
+            <a href="/ig?id=486878789123093" class="btn btn-ig">測試 IG 登入 (假冒官方)</a>
+        </div>
+
+        <hr style="margin: 30px 0; border-color: rgba(255,255,255,0.2);">
+
+        <h2>例外測試 (模組 D)</h2>
+        <div class="test-links">
+            <a href="/fb" class="btn btn-error">測試無 ID 的 FB 連結</a>
+            <a href="/twitter?id=101" class="btn btn-error">測試不合法的平台</a>
+            <a href="/fb?id=999" class="btn btn-error">測試不存在的 ID</a>
+        </div>
+    </div>
+</body>
+
+</html>
