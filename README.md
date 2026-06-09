@@ -53,7 +53,8 @@
    * **自訂模型**：系統會自動下載 `qwen2.5` 並建立一個專門用於詐騙網站分析與生成的自訂 Ollama 模型 `scamer`。
    * **模擬網頁**：讀取資料庫中的詐騙案例文案進行分析與生成後，自動注入美化的現代 CSS 樣式，並輸出至 **`beautiful_output.html`**。
 
-[!important] 這裡產出的 `beautiful_output.html` 相當於第三部分的 `mock_scam.html`
+> [!IMPORTANT]
+> 這裡產出的 `beautiful_output.html` 相當於第三部分網頁伺服器實際運作時所使用的 `mock_scam.html` 樣式範本。
 
 ### 運作原理簡述
 1. **模型客製化**：呼叫 `ollama.create` 建立名為 `scamer` 的自訂模型，並設定特定的 System Prompt，引導 AI 分析文案攻擊手法、生成假登入頁面並在跳轉時攜帶 `ad_id`。
