@@ -1,8 +1,12 @@
 import sqlite3
+from dotenv import load_dotenv
 from flask import Flask, request, render_template, redirect, url_for
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
-DB_PATH = 'scam_database.db'
+DB_PATH = os.getenv("SQLITE_DB_FILE")
 
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
