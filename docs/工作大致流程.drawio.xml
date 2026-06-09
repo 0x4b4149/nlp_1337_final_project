@@ -1,0 +1,143 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="第1頁" id="SVrihaZE_gkHhr9Mso1Y">
+    <mxGraphModel dx="3116" dy="2447" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Hb31GhFGld-tDbLX4HvN-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry height="1070" width="1645" x="-330" y="-90" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-43" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FF2828);strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="310" width="460" x="190" y="630" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-42" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FF2828);strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="150" width="740" x="60" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-41" parent="1" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=light-dark(#000000,#FF2828);strokeWidth=3;" value="" vertex="1">
+          <mxGeometry height="150" width="960" x="60" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-4" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-2" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" value="詐騙資料集" vertex="1">
+          <mxGeometry height="80" width="120" x="140" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-6" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-17">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="235" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="ChromaDB" vertex="1">
+          <mxGeometry height="60" width="120" x="380" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-10" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="vvSm3I2YXwp7Ll_2AJya-9">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="720" y="235" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-7" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="data cleaning" vertex="1">
+          <mxGeometry height="30" width="60" x="280" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-8" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="call by tool" vertex="1">
+          <mxGeometry height="30" width="60" x="530" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="詐騙文案" vertex="1">
+          <mxGeometry height="60" width="120" x="820" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-11" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Generate" vertex="1">
+          <mxGeometry height="30" width="60" x="730" y="205" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-21" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="詐騙文案" vertex="1">
+          <mxGeometry height="60" width="120" x="140" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-17" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="90" width="90" x="620" y="190" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-14" parent="1" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.bots;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="57" width="60" x="635" y="195" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-16" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Agent A" vertex="1">
+          <mxGeometry height="30" width="60" x="635" y="250" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-25" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-18" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
+          <mxGeometry height="90" width="90" x="380" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-19" parent="1" style="verticalLabelPosition=bottom;aspect=fixed;html=1;shape=mxgraph.salesforce.bots;fillColor=none;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="57" width="60" x="395" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-20" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Agent B" vertex="1">
+          <mxGeometry height="30" width="60" x="395" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-22" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Prompt&amp;nbsp;&lt;div&gt;Engineer&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="90" x="265" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-24" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="詐騙網站第一層" vertex="1">
+          <mxGeometry height="60" width="120" x="590" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-26" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Generate" vertex="1">
+          <mxGeometry height="30" width="60" x="500" y="375" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-28" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=40;" value="Agent 工作流程" vertex="1">
+          <mxGeometry height="90" width="290" x="10" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-29" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;fontSize=40;" value="網站運作流程" vertex="1">
+          <mxGeometry height="90" width="260" x="10" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-34" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-36" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="詐騙網站第一層" vertex="1">
+          <mxGeometry height="60" width="120" x="50" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-38" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="FB 登入" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-39" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Line 登入" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-40" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-37">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-33" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="IG 登入" vertex="1">
+          <mxGeometry height="60" width="120" x="280" y="840" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-35" edge="1" parent="1" source="vvSm3I2YXwp7Ll_2AJya-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="vvSm3I2YXwp7Ll_2AJya-32">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="vvSm3I2YXwp7Ll_2AJya-37" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="教育網站" vertex="1">
+          <mxGeometry height="60" width="120" x="500" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="Hb31GhFGld-tDbLX4HvN-1" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;Agent A 透過 RAG 與 Prompt 給出 [文案]&lt;/li&gt;&lt;li&gt;分析內容補充 [詐騙手法]&lt;/li&gt;&lt;li&gt;網站後端資料庫放&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;廣告 id&lt;/li&gt;&lt;ul&gt;&lt;li&gt;廣告文案&lt;/li&gt;&lt;li&gt;詐騙手法&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="95" width="260" x="1020" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="Hb31GhFGld-tDbLX4HvN-2" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;ul&gt;&lt;li&gt;讀取 Agent A 給的 [文案]&lt;/li&gt;&lt;li&gt;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;生成詐騙網站主要頁面&lt;/span&gt;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;有跳轉帳號登入&lt;/li&gt;&lt;li&gt;跳轉要帶上廣告 id&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;requset:&amp;nbsp;&lt;/li&gt;&lt;ul&gt;&lt;li&gt;https://127.0.0.1/line?id=....&lt;/li&gt;&lt;li&gt;https://127.0.0.1/fb?id=....&lt;/li&gt;&lt;li&gt;https://127.0.0.1/ig?id=....&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="182.5" width="250" x="800" y="357.5" as="geometry" />
+        </mxCell>
+        <mxCell id="Hb31GhFGld-tDbLX4HvN-3" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;rounded=0;" value="&lt;ul&gt;&lt;li&gt;透過 Agent B 給的網頁跳轉到登入頁面&lt;/li&gt;&lt;li&gt;點擊登入頁面按鈕跳轉教育網站&lt;/li&gt;&lt;li&gt;教育網站根據廣告 id 找到後端的詐騙手法展示&lt;/li&gt;&lt;/ul&gt;" vertex="1">
+          <mxGeometry height="95" width="310" x="650" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="Hb31GhFGld-tDbLX4HvN-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;font style=&quot;font-size: 65px;&quot;&gt;工作分配&lt;/font&gt;" vertex="1">
+          <mxGeometry height="230" width="540" x="-430" y="-110" as="geometry" />
+        </mxCell>
+        <mxCell id="zpmfd2xe5zwPZerghxBJ-1" parent="1" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;align=left;" value="&lt;ul&gt;&lt;li&gt;DB[id]&lt;/li&gt;&lt;ul&gt;&lt;li&gt;文案&lt;/li&gt;&lt;li style=&quot;&quot;&gt;詐騙手法&lt;/li&gt;&lt;/ul&gt;&lt;/ul&gt;&lt;div style=&quot;&quot;&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="90" width="160" x="740" y="870" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
