@@ -2,6 +2,7 @@ import sqlite3
 from dotenv import load_dotenv
 from flask import Flask, request, render_template, redirect, url_for
 import os
+import random
 
 load_dotenv()
 
@@ -16,12 +17,18 @@ def get_db_connection():
 # 根目錄導向測試頁面
 @app.route('/')
 def index():
-    return redirect(url_for('mock_scam'))
+    return redirect(url_for('scam'))
 
-# 前置測試用的模擬詐騙頁面
-@app.route('/mock_scam')
-def mock_scam():
-    return render_template('mock_scam.html')
+# 前置測試用的模擬詐騙頁面，隨機選擇 templates/scam 底下的 HTML 檔案
+@app.route('/scam')
+def scam():
+    scam_dir = os.path.join(app.root_path, 'templates', 'scam')
+    if os.path.exists(scam_dir):
+        files = [f for f in os.listdir(scam_dir) if f.endswith('.html')]
+        if files:
+            selected_file = random.choice(files)
+            return render_template(f"scam/{selected_file}")
+    return render_template('invalid_link.html')
 
 # 模組 A & B：入口路由與分流器、模擬登入
 @app.route('/<platform>', methods=['GET'])
