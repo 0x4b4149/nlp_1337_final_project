@@ -1,7 +1,12 @@
 import sqlite3
 import ollama
-
 import re
+import dotenv
+import os
+dotenv.load_dotenv()
+
+PROJ_ROOT = os.getenv("PROJ_ROOT")
+
 def process_model_response(response_text):
     # 1. 使用正規表達式提取 ```html 和 ``` 之間的內容
     # re.DOTALL 允許 . 匹配包含換行符號在內的所有字元
@@ -150,7 +155,7 @@ try:
             print("❌ 已達到最大重試次數 (3次)，仍未能產出完全符合規範的 HTML，將強制儲存最後一次的結果。")
 
         # 寫入檔案
-        filename = f'output_ad_{ad_id}.html'
+        filename = f'{PROJ_ROOT}/templates/scam/scam_{ad_id}.html'
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(processed_html)
         print(f"HTML 檔案已成功儲存為 {filename}！")
