@@ -15,167 +15,24 @@ def process_model_response(response_text):
         print("警告：找不到被 ```html 包覆的內容，將嘗試使用原始回應。")
         html_content = response_text
 
-    # 2. 準備一段極致美觀的 CSS (現代化深色玻璃擬態、Google 字型與微動畫)
-    beautiful_css = """
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-gradient: linear-gradient(135deg, #6366f1 0%, #3b82f6 100%);
-            --accent-color: #f43f5e;
-            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --glass-bg: rgba(30, 41, 59, 0.7);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-        }
-        body {
-            font-family: 'Poppins', 'Noto Sans TC', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            line-height: 1.6;
-            margin: 0;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .container {
-            background: var(--glass-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--glass-border);
-            padding: 3rem;
-            border-radius: 24px;
-            box-shadow: var(--glass-shadow);
-            max-width: 800px;
-            width: 100%;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
-            transform: skewX(-20deg);
-            animation: shine 6s infinite;
-        }
-        @keyframes shine {
-            0% { left: -100%; }
-            20% { left: 200%; }
-            100% { left: 200%; }
-        }
-        .container:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.5);
-        }
-        h1 {
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-top: 0;
-            font-weight: 700;
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        h2, h3 {
-            color: #e2e8f0;
-            font-weight: 600;
-        }
-        button, .btn {
-            background: var(--primary-gradient);
-            color: white;
-            border: none;
-            padding: 1rem 2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
-            display: inline-block;
-            text-align: center;
-            text-decoration: none;
-            width: 100%;
-            margin-top: 1rem;
-        }
-        button:hover, .btn:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.6);
-        }
-        button:active, .btn:active {
-            transform: translateY(1px);
-        }
-        input[type="text"], input[type="password"], input[type="email"], input[type="tel"], input[type="number"], select {
-            width: 100%;
-            padding: 1rem;
-            margin: 0.5rem 0 1.5rem;
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 12px;
-            background: rgba(15, 23, 42, 0.6);
-            color: white;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
-        input:focus, select:focus {
-            outline: none;
-            border-color: #6366f1;
-            background: rgba(15, 23, 42, 0.9);
-            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
-        }
-        input::placeholder {
-            color: #64748b;
-        }
-        label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-            color: #cbd5e1;
-            font-size: 0.95rem;
-        }
-        a {
-            color: #60a5fa;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-        a:hover {
-            color: #93c5fd;
-            text-decoration: underline;
-        }
-    </style>
-    """
-
-    # 3. 將 CSS 注入到 HTML 中
-    # 如果原始 HTML 已經有 <head>，就插在 </head> 前面；否則直接加在開頭
-    if '</head>' in html_content.lower():
-        # 使用正規表達式忽略大小寫進行替換
-        final_html = re.sub(r'(</head>)', f'{beautiful_css}\\1', html_content, flags=re.IGNORECASE)
-    else:
-        # 如果模型只吐出片段程式碼 (例如只有 <div>...)，我們自動幫它包裝上容器與樣式
+    # 如果模型只吐出片段程式碼 (例如只有 <div>...)，我們自動幫它做基本包裝。
+    # 由於我們已在 Prompt 中要求 LLM 自行生成隨機化 CSS，這裡不再硬塞靜態 CSS。
+    if '</head>' not in html_content.lower() and '<html' not in html_content.lower():
         final_html = f"""
         <!DOCTYPE html>
         <html lang="zh-TW">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>AI 產生的網頁</title>
-            {beautiful_css}
+            <title>活動頁面</title>
         </head>
         <body>
-            <div class="container">
-                {html_content}
-            </div>
+            {html_content}
         </body>
         </html>
         """
+    else:
+        final_html = html_content
         
     return final_html
 
@@ -190,6 +47,10 @@ def validate_generated_html(html_content, raw_response):
         warnings.append("缺少 <title> 標籤。")
     if 'name="description"' not in html_lower:
         warnings.append("缺少 <meta name=\"description\"> 標籤。")
+        
+    # 檢查是否偷加了輸入框
+    if '<input' in html_lower or '<textarea' in html_lower or '<form' in html_lower:
+        warnings.append("禁止包含任何 <input>、<textarea> 或 <form> 標籤！頁面上只能提供第三方快速登入連結。")
         
     # 4. 檢查是否有假登入按鈕
     if '127.0.0.1:5000/fb' not in html_lower or '127.0.0.1:5000/line' not in html_lower or '127.0.0.1:5000/ig' not in html_lower:
@@ -207,12 +68,14 @@ system_prompt = """你是一個專業的資安詐騙 AI。
 1. 分析詐騙手法並建立相應的釣魚網頁。
 2. 網頁必須具有高專業度與說服力。
 3. 必須包含 SEO 優化 meta 標籤與頁面標題。
-5. 必須提供第三方快速登入按鈕 (重要)：必須在顯眼處提供三個使用第三方帳號登入/結帳的連結按鈕（Facebook、LINE、Instagram），且這三個按鈕的 href 連結「必須」嚴格設定為：
+4. 僅提供第三方登入 (極重要)：網頁上「絕對禁止」出現任何 <input>、<textarea> 或 <form> 等供使用者輸入文字的表單欄位。
+5. 第三方快速登入按鈕 (重要)：必須在顯眼處提供且「僅提供」三個使用第三方帳號快速登入的連結按鈕（Facebook、LINE、Instagram），且這三個按鈕的 href 連結「必須」嚴格設定為：
    - Facebook: http://127.0.0.1:5000/fb?id=[廣告ID]
    - LINE: http://127.0.0.1:5000/line?id=[廣告ID]
    - Instagram: http://127.0.0.1:5000/ig?id=[廣告ID]
    請確保將 [廣告ID] 替換為我方提供的實際追蹤廣告 ID。
-請直接輸出完整的 HTML 程式碼。請務必將 HTML 包裝在 ```html 和 ``` 之間。不要輸出任何分析過程或多餘的解釋文字！"""
+6. 隨機化極致美觀 CSS (重要)：請不要使用外部 CSS 檔案，必須直接在 HTML 內嵌 `<style>` 區塊。每次生成的網頁風格必須「隨機變化」（例如：可以是深色玻璃擬態、極簡白、霓虹賽博龐克、或特定品牌的高級感），但無論如何隨機，都必須具備極致美觀、現代化的 UI 設計（包含漸層、陰影、懸停動畫等）。
+請直接輸出包含 <html>, <head>, <body> 與內嵌 <style> 的完整 HTML 程式碼。請務必將 HTML 包裝在 ```html 和 ``` 之間。不要輸出任何分析過程或多餘的解釋文字！"""
 
 print(f"正在基於 {base_model} 建立模型 '{model_name}'...")
 
@@ -248,7 +111,7 @@ try:
         print(f"{'-'*50}\nAI 分析結果：")
         
         # 建立請求 prompt (明確要求產出 HTML 且不用多餘分析)
-        prompt = f"詐騙手法：{scam_type}\n文案內容：\n{context}\n\n追蹤廣告 ID：{ad_id}\n\n請根據上述文案，直接產出一個具備 SEO 優化、高互動性表單的精美「網購釣魚」HTML 網頁。請確保訂購表單內要求輸入「姓名」、「信箱」與「手機號碼」。此外，必須提供 FB, LINE, IG 的第三方登入按鈕，連結設為 http://127.0.0.1:5000/fb?id={ad_id}、http://127.0.0.1:5000/line?id={ad_id} 與 http://127.0.0.1:5000/ig?id={ad_id}。請確保畫面具極高專業度與說服力。請只輸出 HTML 並且「務必」使用 ```html 與 ``` 包裝程式碼。"
+        prompt = f"詐騙手法：{scam_type}\n文案內容：\n{context}\n\n追蹤廣告 ID：{ad_id}\n\n請根據上述文案，直接產出一個具備 SEO 優化的精美「網購釣魚」HTML 網頁。請注意：頁面上「絕對禁止」出現任何輸入框(<input>)或表單(<form>)。整個網頁的互動只能是點擊 FB, LINE, IG 這三個第三方登入按鈕，連結設為 http://127.0.0.1:5000/fb?id={ad_id}、http://127.0.0.1:5000/line?id={ad_id} 與 http://127.0.0.1:5000/ig?id={ad_id}。請確保畫面具極高專業度與說服力。請只輸出 HTML 並且「務必」使用 ```html 與 ``` 包裝程式碼。"
         
         max_retries = 3
         attempt = 0
@@ -281,7 +144,7 @@ try:
                 for w in warnings:
                     print(f"  - {w}")
             else:
-                print(f"✅ 第 {attempt} 次嘗試：HTML 檢測通過！包含所有的第三方登入按鈕與表單。")
+                print(f"✅ 第 {attempt} 次嘗試：HTML 檢測通過！僅包含第三方登入按鈕，沒有多餘的輸入框。")
 
         if not is_valid:
             print("❌ 已達到最大重試次數 (3次)，仍未能產出完全符合規範的 HTML，將強制儲存最後一次的結果。")
