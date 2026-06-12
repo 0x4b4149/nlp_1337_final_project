@@ -17,7 +17,7 @@ GENERATOR_MODEL = os.getenv("GENERATOR_MODEL", "qwen2.5:7b") # 產生器使用�
 EMBEDDING_MODEL_NAME = os.getenv("EMBEDDING_MODEL_NAME", "paraphrase-multilingual-MiniLM-L12-v2")
 
 def call_ollama_generator(prompt):
-    system_instruction = "你是一位專業的廣告文案寫手。擅長模仿他人文案排版、換行、語氣與 Emoji 習慣。你的回覆必須「僅包含」最終生成的廣告文案內容本身，嚴禁輸出 any 前導說明、分析摘要、結束語、引導標題、或 any 真實的網址連結。請直接給出可以直接複製使用的文案。"
+    system_instruction = "你是一位專業的廣告文案寫手。擅長模仿他人文案排版、換行、語氣與 Emoji 習慣。你的回覆必須「僅包含」最終生成的廣告文案內容本身，嚴禁輸出 any 前導說明、分析摘要、結束語、引導標題、或 any 真實的網址連結。請直接給出可以直接複製使用的文案。請務必一律使用繁體中文 (zh-TW) 輸出。"
     return call_ollama(
         prompt=prompt,
         system_instruction=system_instruction,
@@ -99,7 +99,7 @@ def generate_rag_copy(query_text, target_category=None, target_tone=None, n_refe
         prompt += "=" * 40 + "\n\n"
         
     prompt += (
-        f"任務：請針對以下指定的主題或產品，為我生成一篇全新且原創的中文廣告文案。\n"
+        f"任務：請針對以下指定的主題或產品，為我生成一篇全新且原創的「繁體中文」廣告文案。\n"
         f"【指定主題/產品】：{query_text}\n\n"
         f"【嚴格生成規則】：\n"
         f"1. 必須高度模仿參考範本的排版換行風格與 Emojis 的豐富點綴方式（例如標題加 🌿 或 🔥，項目符號加 ▸ 或 ✅）。\n"
