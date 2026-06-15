@@ -11,6 +11,7 @@ load_dotenv()
 from core.writer import generate_rag_copy
 from core.analyzer import call_ollama_analyzer
 from core.ollama_core import call_ollama_vision
+from core.image_generator import generate_image_base64
 
 # 強制輸出為 UTF-8 避免 Windows 終端機遇到 Emoji 與特殊字元編碼錯誤
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
@@ -29,7 +30,8 @@ def init_sqlite_db():
             CREATE TABLE IF NOT EXISTS scams (
                 id TEXT PRIMARY KEY,
                 context TEXT,
-                scam_type TEXT
+                scam_type TEXT,
+                image_b64 TEXT
             );
         """)
         conn.commit()
@@ -38,7 +40,7 @@ def init_sqlite_db():
         print(f"[錯誤] 無法初始化 SQLite3 資料庫：{e}")
         sys.exit(1)
 
-def save_to_db(ad_id, context, scam_type):
+def save_to_db(ad_id, context, scam_type, image_b64):
     """將生成與分析結果寫入 SQLite3 資料庫"""
     try:
         conn = sqlite3.connect(DB_FILE)
@@ -52,8 +54,8 @@ def save_to_db(ad_id, context, scam_type):
             ad_id = str(random.randint(100000000000000, 999999999999999))
 
         cursor.execute(
-            "INSERT INTO scams (id, context, scam_type) VALUES (?, ?, ?)",
-            (ad_id, context, scam_type)
+            "INSERT INTO scams (id, context, scam_type, image_b64) VALUES (?, ?, ?, ?)",
+            (ad_id, context, scam_type, image_b64)
         )
         conn.commit()
         conn.close()
@@ -166,17 +168,27 @@ def main():
         
     # 3. 隨機生成 15 位數 ID 廣告識別碼
     initial_id = str(random.randint(100000000000000, 999999999999999))
-    
-    # 4. 寫入 SQLite3 資料庫
-    final_id = save_to_db(initial_id, generated_copy, scam_analysis)
-    
-    # 5. 印出最終分析成果
+
+    # 4. 依據文案生成廣告配圖
+    print("\n正在根據生成的文案呼叫 Imagen 4 生成廣告配圖...")
+    image_b64 = generate_image_base64(generated_copy)
+
+    if not image_b64:
+        print("[錯誤] 圖片生成失敗，中止流程。")
+        sys.exit(1)
+
+    # 5. 寫入 SQLite3 資料庫
+    final_id = save_to_db(initial_id, generated_copy, scam_analysis, image_b64)
+
+    # 7. 印出最終分析成果
     print("\n" + "=" * 60)
     print(f" 🎯 執行成果展示 (ID: {final_id}) ")
     print("=" * 60)
     print(f"【廣告文案內容】:\n{generated_copy}")
     print("-" * 60)
     print(f"【詐騙手法分析】:\n{scam_analysis}")
+    print("-" * 60)
+    print(f"【廣告配圖 Base64】:\n{image_b64[:100]}")
     print("=" * 60)
 
 if __name__ == "__main__":

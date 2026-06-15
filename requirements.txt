@@ -8,3 +8,6 @@ flask
 
 # Text to Web tool
 ollama
+
+# Google GenAI SDK (Imagen 4 圖片生成)
+google-genai

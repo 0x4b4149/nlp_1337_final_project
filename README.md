@@ -4,7 +4,7 @@
 
 ---
 
-## 🛠️ 第一部分：ChromaDB RAG 文案生成與分析 (`rag-context-generator`)
+## 🛠️ 第一部分：ChromaDB RAG 文案生成與分析 (`multimodal-rag-context-generator`)
 
 ### 環境架設與執行步驟
 
@@ -13,26 +13,44 @@
    ```bash
    pip install -r requirements.txt
    ```
-3. 建立 ChromaDB 本地向量資料庫：
+3. 建立 ChromaDB 本地向量資料庫 (可以跳過)：
    * 執行指令：
      ```bash
      python chroma_initiator/index_to_chromadb.py
      ```
    * *備註：此步驟需要 `chroma_initiator/dataset` 資料夾，該資料夾並未包含在 GitHub 上，請向團隊成員索取。*
+   * 基本上專案會直接包含結果
 4. 生成廣告文案與分析詐騙手法：
-   * 執行指令：
+   * 執行指令（支援三種輸入模式）：
      ```bash
-     python rag_context_gen.py --query "你的廣告主題"
+     # 模式 1：純文字輸入
+     python multimodal_rag_context_gen.py --query "你的廣告主題"
+     
+     # 模式 2：純圖片輸入
+     python multimodal_rag_context_gen.py --image "圖片路徑"
+     
+     # 模式 3：文字 + 圖片混合輸入
+     python multimodal_rag_context_gen.py --query "你的廣告主題" --image "圖片路徑"
      ```
 5. **產出結果**：自動寫入本地 SQLite3 資料庫（`scam_database.db` 的 `scams` 資料表），內容包含：
    * `id`: 隨機產生的 15 位數廣告唯一識別碼。
    * `context`: 生成的高擬真廣告文案。
    * `scam_type`: 分析出的詐騙手法。
+   * `image_b64`: 根據文案生成的廣告配圖 (Base64 格式)。
+6. **查看生成的廣告配圖**：
+   * 執行指令：
+     ```bash
+     python scripts/view_image.py <廣告ID>
+     ```
 
 ### 運作原理簡述
 1. 使用 Ollama (基本分類) + Gemini (進階分類與修正) 產生 `ad_labels_metadata.json`。
 2. `index_to_chromadb.py` 使用 `sentence-transformers` 將廣告文案與分析轉換為向量，並存入 ChromaDB 向量資料庫。
-3. `rag_context_gen.py` 透過語意檢索 ChromaDB 尋找相似案例作為 RAG 上下文，接著呼叫 Ollama 模型生成新廣告文案，最後分析其詐騙手法並記錄至 SQLite3。
+3. `multimodal_rag_context_gen.py` 根據輸入模式（純文字 / 圖片擷取特徵 / 混合），透過語意檢索 ChromaDB 尋找相似案例作為 RAG 上下文。
+4. 呼叫 Ollama 模型生成高擬真廣告文案，並分析其中的詐騙手法。
+5. 呼叫 Google Imagen 4 模型，直接根據生成的廣告文案產生對應的行銷配圖。 **注意: 一張大概 1.25 TWD**
+6. 最終將文案、詐騙分析與配圖 (Base64) 一併記錄至 SQLite3 資料庫。
+
 ---
 
 ## 🎨 第二部分：文案轉網頁分析工具 (`textToHtml`)
