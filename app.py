@@ -59,14 +59,14 @@ def education():
         
     # 連線至資料庫撈取資料
     conn = get_db_connection()
-    scam = conn.execute('SELECT context, scam_type FROM scams WHERE id = ?', (ad_id,)).fetchone()
+    scam = conn.execute('SELECT context, scam_type, image_b64 FROM scams WHERE id = ?', (ad_id,)).fetchone()
     conn.close()
     
     # 若查無資料，觸發模組 D
     if scam is None:
         return render_template('invalid_link.html')
         
-    return render_template('education.html', context=scam['context'], scam_type=scam['scam_type'])
+    return render_template('education.html', context=scam['context'], scam_type=scam['scam_type'], image_b64=scam['image_b64'])
 
 # 二次受騙警告頁面
 @app.route('/scammed_again')
