@@ -107,7 +107,7 @@ try:
     cursor = conn.cursor()
     
     # 讀取資料庫內容
-    cursor.execute("SELECT id, context, scam_type, image_b64 FROM scams LIMIT 3") # 先取前三筆測試
+    cursor.execute("SELECT id, context, scam_type, image_b64 FROM scams ORDER BY RANDOM() LIMIT 3") # 隨機取前三筆測試
     records = cursor.fetchall()
     
     if not records:
