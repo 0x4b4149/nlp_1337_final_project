@@ -1,9 +1,14 @@
+import sys
+import io
 import sqlite3
 import ollama
 import re
 import dotenv
 import os
 dotenv.load_dotenv()
+
+# 強制輸出為 UTF-8 避免 Windows 終端機遇到 Emoji 與特殊字元編碼錯誤
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 PROJ_ROOT = os.getenv("PROJ_ROOT")
 
@@ -96,20 +101,20 @@ except Exception as e:
     print(f"建立模型時發生錯誤，請確認 Ollama 服務是否正常執行：{e}")
 
 # 連結到 SQLite 資料庫
-db_path = 'scam_database.db'
+db_path = os.getenv("SQLITE_DB_FILE", f"{PROJ_ROOT}/scam_database.db")
 try:
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
     # 讀取資料庫內容
-    cursor.execute("SELECT id, context, scam_type FROM scams LIMIT 3") # 先取前三筆測試
+    cursor.execute("SELECT id, context, scam_type, image_b64 FROM scams LIMIT 3") # 先取前三筆測試
     records = cursor.fetchall()
     
     if not records:
         print("資料庫中目前沒有資料。")
     
     for row in records:
-        ad_id, context, scam_type = row
+        ad_id, context, scam_type, image_b64 = row
         print(f"\n{'='*50}")
         print(f"正在分析資料... 廣告 ID: {ad_id} | 詐騙手法: {scam_type}")
         print(f"原始文案: {context}")
@@ -117,6 +122,9 @@ try:
         
         # 建立請求 prompt (明確要求產出 HTML 且不用多餘分析)
         prompt = f"詐騙手法：{scam_type}\n文案內容：\n{context}\n\n追蹤廣告 ID：{ad_id}\n\n請根據上述文案，直接產出一個具備 SEO 優化的精美「網購釣魚」HTML 網頁。請注意：頁面上「絕對禁止」出現任何輸入框(<input>)或表單(<form>)。整個網頁的互動只能是點擊 FB, LINE, IG 這三個第三方登入按鈕，連結設為 http://127.0.0.1:5000/fb?id={ad_id}、http://127.0.0.1:5000/line?id={ad_id} 與 http://127.0.0.1:5000/ig?id={ad_id}。請確保畫面具極高專業度與說服力。請只輸出 HTML 並且「務必」使用 ```html 與 ``` 包裝程式碼。"
+        
+        if image_b64:
+            prompt += "\n\n【重要】：這份文案有附帶商品圖片，請在您生成的 HTML 網頁中合適的位置加上 `<img src=\"{{IMAGE_PLACEHOLDER}}\" alt=\"商品圖片\" style=\"max-width: 100%; border-radius: 8px; margin: 20px 0;\">` 這個圖片佔位符，系統後續會自動替換為真實圖片。"
         
         max_retries = 3
         attempt = 0
@@ -153,6 +161,10 @@ try:
 
         if not is_valid:
             print("❌ 已達到最大重試次數 (3次)，仍未能產出完全符合規範的 HTML，將強制儲存最後一次的結果。")
+
+        # 若有圖片且 HTML 中包含佔位符，則進行替換
+        if image_b64 and '{{IMAGE_PLACEHOLDER}}' in processed_html:
+            processed_html = processed_html.replace('{{IMAGE_PLACEHOLDER}}', f'data:image/jpeg;base64,{image_b64}')
 
         # 寫入檔案
         filename = f'{PROJ_ROOT}/templates/scam/scam_{ad_id}.html'
